@@ -11,13 +11,14 @@ public class TypingManager : MonoBehaviour
     public List<Word> words;
     Text display;
 
-    public WordGenerator wordSpawner;
-
     // Start is called before the first frame update
     void Start()
     {
         display = gameObject.GetComponent<Text>();
-        AddWord(); AddWord(); AddWord(); AddWord(); AddWord(); AddWord(); AddWord(); AddWord();
+        for (int i = 0; i < 20; i++)
+        {
+            AddWord();
+        }
         display.text = words[0].text;
     }
 
@@ -29,36 +30,6 @@ public class TypingManager : MonoBehaviour
         words.Add(word);
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-
-    //    string input = Input.inputString;
-    //    if (input.Equals("")) //if we are not typing
-    //        return; // stops this function here
-
-    //    char c = input[0];
-    //    string typing = "";
-    //    for (int i = 0; i < words.Count; i++)
-    //    {
-    //        Word w = words[i];
-    //        if (w.continueText(c))
-    //        {
-    //            string typed = w.getTyped();
-    //            typing += typed + "\n";
-    //            if (typed.Equals(w.text)) // If what we typed is the word's text
-    //            {
-    //                // We typed the whole word
-    //                Debug.Log("TYPED : " + w.text);
-    //                words.Remove(w);
-    //                //typing = "";
-    //                break;
-    //            }
-    //        }
-    //    }
-
-    //    display.text = typing;
-    //}
 
     public void TypeLetter(char letter)
     {
@@ -67,6 +38,7 @@ public class TypingManager : MonoBehaviour
             if (words[0].GetNextLetter() == letter)
             {
                 words[0].TypeLetter();
+                Score.scoreValue += 5;
                 RemoveLetter();
             }
         }
@@ -85,6 +57,7 @@ public class TypingManager : MonoBehaviour
         if (words[0] != null && words[0].WordTyped())
         {
             words.Remove(words[0]);
+            Score.scoreValue += 50;
             display.text = GetNewWord();
             display.color = Color.black;
         }
@@ -108,6 +81,7 @@ public class TypingManager : MonoBehaviour
         display.text = display.text.Remove(0, 1);
         display.color = Color.red;
     }
+
 }
 
 [System.Serializable]
@@ -118,13 +92,9 @@ public class Word
     private string hasTyped;
     private int curChar = 0;
 
-    public TypingManager typingManager;
-
-
     public Word(string t)
     {
         text = t;
-        //hasTyped = "";
         curChar = 0;
     }
 
@@ -136,7 +106,7 @@ public class Word
     public void TypeLetter()
     {
         curChar++;
-}
+    }
 
     public bool continueText(char c)
     {
@@ -160,11 +130,6 @@ public class Word
             return false;
         }
     }
-
-    //public string getTyped()
-    //{
-    //    return hasTyped;
-    //}
 
     public bool WordTyped()
     {

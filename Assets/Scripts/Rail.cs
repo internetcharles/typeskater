@@ -5,14 +5,12 @@ using UnityEngine;
 public class Rail : MonoBehaviour
 {
     public GameObject typingManager;
-    public GameObject currentWord;
     public Canvas canvas;
-    private CharacterMovement characterMovement;
     private GameObject character;
+    private GameObject typingGame;
 
     void Awake()
     {
-        characterMovement = GetComponent<CharacterMovement>();
         character = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -25,8 +23,7 @@ public class Rail : MonoBehaviour
             touchingRail = true;
             Time.timeScale = 0.15f;
             Vector3 typePosition = new Vector3(character.transform.position.x, character.transform.position.y + 0.5f, character.transform.position.z);
-            Vector3 wordPosition = new Vector3(character.transform.position.x, character.transform.position.y + 1f, character.transform.position.z);
-            Instantiate(typingManager, typePosition, Quaternion.identity, canvas.transform);
+            typingGame = Instantiate(typingManager, typePosition, Quaternion.identity, canvas.transform);
             //Instantiate(currentWord, wordPosition, Quaternion.identity, canvas.transform);
         }
 
@@ -36,12 +33,18 @@ public class Rail : MonoBehaviour
         if (other.tag == "Player")
         {
             touchingRail = false;
+            Destroy(typingGame);
             Time.timeScale = 1f;
         }
     }
 
     void Update()
     {
+        if (typingGame != null)
+        {
+            typingGame.transform.position = new Vector3(character.transform.position.x,
+                character.transform.position.y + 0.5f, character.transform.position.z);
+        }
     }
 
 }

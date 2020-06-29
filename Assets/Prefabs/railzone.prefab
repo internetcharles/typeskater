@@ -75,9 +75,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typingManager: {fileID: 1882792972256501365, guid: f60503cf8824c2f43b2e180361a49141,
     type: 3}
-  currentWord: {fileID: 6314913058969522957, guid: 9218797913742454d9cd284ffb26290a,
-    type: 3}
   canvas: {fileID: 0}
+  score: {fileID: 4115041070610815213, guid: bcf8a3e0075da5c43b3ef538ac51ba11, type: 3}
   touchingRail: 0
 --- !u!1001 &661800882903256526
 PrefabInstance:
