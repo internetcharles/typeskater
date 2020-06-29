@@ -93,24 +93,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4da99e5dfff114e9c2a1c6fc7db07e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  words:
-  - text: shoes
-    onTyped:
-      m_PersistentCalls:
-        m_Calls: []
-  - text: pie
-    onTyped:
-      m_PersistentCalls:
-        m_Calls: []
-  - text: chocolate
-    onTyped:
-      m_PersistentCalls:
-        m_Calls: []
-  - text: dog
-    onTyped:
-      m_PersistentCalls:
-        m_Calls: []
-  - text: cat
-    onTyped:
-      m_PersistentCalls:
-        m_Calls: []
+  words: []

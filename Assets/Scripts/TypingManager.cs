@@ -11,12 +11,22 @@ public class TypingManager : MonoBehaviour
     public List<Word> words;
     Text display;
 
+    public WordGenerator wordSpawner;
+
     // Start is called before the first frame update
     void Start()
     {
         display = gameObject.GetComponent<Text>();
-        words.Add(new Word("added"));
+        AddWord(); AddWord(); AddWord(); AddWord(); AddWord(); AddWord(); AddWord(); AddWord();
         display.text = words[0].text;
+    }
+
+    public void AddWord()
+    {
+        Word word = new Word(WordGenerator.GetRandomWord());
+        Debug.Log(word.text);
+
+        words.Add(word);
     }
 
     // Update is called once per frame
