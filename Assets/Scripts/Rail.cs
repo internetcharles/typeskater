@@ -27,7 +27,7 @@ public class Rail : MonoBehaviour
             Vector3 typePosition = new Vector3(character.transform.position.x, character.transform.position.y + 0.5f, character.transform.position.z);
             Vector3 wordPosition = new Vector3(character.transform.position.x, character.transform.position.y + 1f, character.transform.position.z);
             Instantiate(typingManager, typePosition, Quaternion.identity, canvas.transform);
-            Instantiate(currentWord, wordPosition, Quaternion.identity, canvas.transform);
+            //Instantiate(currentWord, wordPosition, Quaternion.identity, canvas.transform);
         }
 
     }
