@@ -8,6 +8,7 @@ public class Rail : MonoBehaviour
     public Canvas canvas;
     private GameObject character;
     private GameObject typingGame;
+    [SerializeField] float timeSpeed = 0.5f;
 
     void Awake()
     {
@@ -21,7 +22,7 @@ public class Rail : MonoBehaviour
         if (other.tag == "Player")
         {
             touchingRail = true;
-            Time.timeScale = 0.15f;
+            Time.timeScale = timeSpeed;
             Vector3 typePosition = new Vector3(character.transform.position.x, character.transform.position.y + 0.5f, character.transform.position.z);
             typingGame = Instantiate(typingManager, typePosition, Quaternion.identity, canvas.transform);
             //Instantiate(currentWord, wordPosition, Quaternion.identity, canvas.transform);
