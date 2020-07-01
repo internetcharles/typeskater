@@ -76,7 +76,11 @@ MonoBehaviour:
   typingManager: {fileID: 1882792972256501365, guid: f60503cf8824c2f43b2e180361a49141,
     type: 3}
   canvas: {fileID: 0}
-  score: {fileID: 4115041070610815213, guid: bcf8a3e0075da5c43b3ef538ac51ba11, type: 3}
+  railScoreObj: {fileID: 4750506162943150696, guid: 9b1500bef164e5a4ba36cbe3ad7852ba,
+    type: 3}
+  timeSpeed: 0.3
+  railScore: 0
+  rs: {fileID: 6126541181181985165, guid: 9b1500bef164e5a4ba36cbe3ad7852ba, type: 3}
   touchingRail: 0
 --- !u!1001 &661800882903256526
 PrefabInstance:

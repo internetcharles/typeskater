@@ -39,6 +39,7 @@ public class TypingManager : MonoBehaviour
             {
                 words[0].TypeLetter();
                 Score.scoreValue += 5;
+                RailScore.railScoreValue += 5;
                 RemoveLetter();
             }
         }
@@ -57,7 +58,7 @@ public class TypingManager : MonoBehaviour
         if (words[0] != null && words[0].WordTyped())
         {
             words.Remove(words[0]);
-            Score.scoreValue += 50;
+            //Score.scoreValue += 50;
             display.text = GetNewWord();
             display.color = Color.black;
         }
