@@ -25,10 +25,15 @@ public class RailScore : MonoBehaviour
             grade = "meh!";
             text.color = Color.red;
         }
-        else if (railScoreValue >= 50)
+        else if (railScoreValue >= 50 && railScoreValue < 100)
         {
             grade = "nice!";
-            text.color = Color.green;
+            text.color = Color.blue;
+        }
+        else if (railScoreValue >= 100)
+        {
+            grade = "nice!";
+            text.color = Color.blue;
         }
 
         // TODO: reveal rail score update text grab score from typingmanager

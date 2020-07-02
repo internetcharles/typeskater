@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Rail
   - Prompt
+  - Ramp
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Foreground
   - Background
   - Rail
-  - 
+  - Ramp
   - 
   - 
   - 

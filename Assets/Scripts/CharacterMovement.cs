@@ -24,9 +24,31 @@ public class CharacterMovement : MonoBehaviour
         MyCircleCollider2D = GetComponent<CircleCollider2D>();
         gravityScaleAtStart = MyRigidbody2D.gravityScale;
         rails = GameObject.FindGameObjectsWithTag("Rail");
+
     }
 
+    //void FixedUpdate()
+    //{
+    //    //NormalizeSlope();
+    //}
 
+    //void NormalizeSlope()
+    //{
+    //    if (MyCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Foreground")) ||
+    //        MyCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ramp")))
+    //    {
+    //        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1f);
+
+    //        if (hit.collider != null && Mathf.Abs(hit.normal.x) > 0.1f)
+    //        {
+    //            MyRigidbody2D.velocity = new Vector2(MyRigidbody2D.velocity.x - hit.normal.x, MyRigidbody2D.velocity.y);
+    //            Vector3 pos = transform.position;
+    //            pos.y += -hit.normal.x * Mathf.Abs(MyRigidbody2D.velocity.x) * Time.deltaTime *
+    //                     (MyRigidbody2D.velocity.x - hit.normal.x > 0 ? 1 : -1);
+    //            transform.position = pos;
+    //        }
+    //    }
+    //}
 
     public void Run()
     {
@@ -38,7 +60,7 @@ public class CharacterMovement : MonoBehaviour
     }
     public void Jump()
     {
-        if (!MyCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Foreground")))
+        if (!MyCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Foreground")) && !MyCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ramp")))
         {
             return;
         }
@@ -46,6 +68,12 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
+            MyRigidbody2D.velocity += jumpVelocityToAdd;
+        }
+
+        if (MyCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ramp")) && Input.GetKeyDown(KeyCode.Space))
+        {
+            Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed * 2f);
             MyRigidbody2D.velocity += jumpVelocityToAdd;
         }
     }
@@ -57,6 +85,5 @@ public class CharacterMovement : MonoBehaviour
     {
         Run();
         Jump();
-
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class TypingManager : MonoBehaviour
+public class SentenceManager : MonoBehaviour
 {
 
-    public List<Word> words;
+    public List<Sentence> sentences;
     Text display;
 
     // Start is called before the first frame update
@@ -16,49 +16,48 @@ public class TypingManager : MonoBehaviour
         display = gameObject.GetComponent<Text>();
         for (int i = 0; i < 20; i++)
         {
-            AddWord();
+            AddSentence();
         }
-        display.text = words[0].text;
+        display.text = sentences[0].text;
     }
 
-    public void AddWord()
+    public void AddSentence()
     {
-        Word word = new Word(WordGenerator.GetRandomWord());
-        Debug.Log(word.text);
+        Sentence sentence = new Sentence(WordGenerator.GetRandomSentence());
+        Debug.Log(sentence.text);
 
-        words.Add(word);
+        sentences.Add(sentence);
     }
 
 
     public void TypeLetter(char letter)
     {
-        if (words[0] != null)
+        if (sentences[0] != null)
         {
-            if (words[0].GetNextLetter() == letter)
+            if (sentences[0].GetNextLetter() == letter)
             {
-                words[0].TypeLetter();
+                sentences[0].TypeLetter();
                 Score.scoreValue += 5;
-                RailScore.railScoreValue += 5;
                 RemoveLetter();
             }
         }
         else
         {
-            foreach (Word word in words)
+            foreach (Sentence sentence in sentences)
             {
-                if (word.GetNextLetter() == letter)
+                if (sentence.GetNextLetter() == letter)
                 {
-                    word.TypeLetter();
+                    sentence.TypeLetter();
                     break;
                 }
             }
         }
 
-        if (words[0] != null && words[0].WordTyped())
+        if (sentences[0] != null && sentences[0].SentenceTyped())
         {
-            words.Remove(words[0]);
+            sentences.Remove(sentences[0]);
             //Score.scoreValue += 50;
-            display.text = GetNewWord();
+            display.text = GetNewSentence();
             display.color = Color.black;
         }
     }
@@ -71,9 +70,9 @@ public class TypingManager : MonoBehaviour
         }
     }
 
-    private string GetNewWord()
+    private string GetNewSentence()
     {
-        return display.text = words[0].text;
+        return display.text = sentences[0].text;
     }
 
     public void RemoveLetter()
@@ -85,14 +84,14 @@ public class TypingManager : MonoBehaviour
 }
 
 [System.Serializable]
-public class Word
+public class Sentence
 {
     public string text;
     public UnityEvent onTyped;
     private string hasTyped;
     private int curChar = 0;
 
-    public Word(string t)
+    public Sentence(string t)
     {
         text = t;
         curChar = 0;
@@ -131,10 +130,11 @@ public class Word
         }
     }
 
-    public bool WordTyped()
+    public bool SentenceTyped()
     {
-        bool wordTyped = (curChar >= text.Length);
-        return wordTyped;
+        bool sentenceTyped = (curChar >= text.Length);
+        return sentenceTyped;
     }
 
 }
+

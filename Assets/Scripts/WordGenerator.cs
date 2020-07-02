@@ -21,12 +21,22 @@ public class WordGenerator : MonoBehaviour
         "account", "spot", "thought", "distinct", "nimble", "practice", "cream",
         "ablaze", "thoughtless", "love", "verdict", "giant" };
 
+    public static string[] sentenceList = {"This is my test sentence.", "I hope this works."};
+
     public static string GetRandomWord()
     {
         int randomIndex = Random.Range(0, wordList.Length);
         string randomWord = wordList[randomIndex];
 
         return randomWord;
+    }
+
+    public static string GetRandomSentence()
+    {
+        int randomIndex = Random.Range(0, sentenceList.Length);
+        string randomSentence = sentenceList[randomIndex];
+
+        return randomSentence;
     }
 
 }
