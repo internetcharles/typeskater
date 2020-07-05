@@ -73,7 +73,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (MyCircleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ramp")) && Input.GetKeyDown(KeyCode.Space))
         {
-            Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed * 2f);
+            Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed * 1.5f);
             MyRigidbody2D.velocity += jumpVelocityToAdd;
         }
     }

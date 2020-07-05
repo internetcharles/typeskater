@@ -9,6 +9,7 @@ public class TypingManager : MonoBehaviour
 
     public List<Word> words;
     Text display;
+    private GameObject wordTypedEffect;
 
     // Start is called before the first frame update
     void Start()
