@@ -1,0 +1,1 @@
+TypeSkater is a typing/skateboarding game programmed in C# with the Unity Game Engine. An old man skates, and while grinding rails, players gain points through typing randomly selected words. It's a party.
